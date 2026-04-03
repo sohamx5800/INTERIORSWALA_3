@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+        (request.auth.token.email == "sohamadhikary707@gmail.com" && request.auth.token.email_verified == true);
+    }
+
+    // Profile: Public read, Admin write (Relaxed for testing)
+    match /profile/{profileId} {
+      allow read: if true;
+      allow write: if true; // TEMPORARY: Allow all writes for local testing
+    }
+
+    // Portfolio: Public read, Admin write (Relaxed for testing)
+    match /portfolio/{projectId} {
+      allow read: if true;
+      allow write: if true; // TEMPORARY: Allow all writes for local testing
+    }
+
+    // Quotations: Public create, Admin read/delete (Relaxed for testing)
+    match /quotations/{quotationId} {
+      allow create: if true;
+      allow read, delete: if true; // TEMPORARY: Allow read for local testing bypass
+      allow update: if false;
+    }
+  }
+}

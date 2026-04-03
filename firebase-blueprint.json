@@ -1,0 +1,68 @@
+{
+  "entities": {
+    "profile": {
+      "title": "Profile",
+      "description": "The profile information for InteriorsWala.",
+      "type": "object",
+      "properties": {
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "address": { "type": "string" },
+        "socialLinks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "platform": { "type": "string" },
+              "url": { "type": "string" }
+            }
+          }
+        }
+      },
+      "required": ["phone", "email", "address"]
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "A portfolio item.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "image": { "type": "string" },
+        "description": { "type": "string" },
+        "link": { "type": "string" }
+      },
+      "required": ["title", "category", "image"]
+    },
+    "quotations": {
+      "title": "Quotation",
+      "description": "A quotation request.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "projectType": { "type": "string" },
+        "budget": { "type": "string" },
+        "message": { "type": "string" },
+        "aiConcept": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "phone", "projectType", "budget", "message"]
+    }
+  },
+  "firestore": {
+    "profile": {
+      "schema": "profile",
+      "description": "The site profile information."
+    },
+    "portfolio": {
+      "schema": "portfolio",
+      "description": "The portfolio items."
+    },
+    "quotations": {
+      "schema": "quotations",
+      "description": "The quotation requests."
+    }
+  }
+}
